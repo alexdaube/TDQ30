@@ -1,9 +1,8 @@
 'use strict';
 
 import React, {Component} from "react";
-import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions} from "react-native";
+import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} from "react-native";
 import SwipeCards from "react-native-swipe-cards";
-import Button from "./Button";
 import Card from "./Card";
 import ScoreCard from "./ScoreCard";
 import Colors from "../constants/Colors";
@@ -74,20 +73,16 @@ export default class DenominationTest extends Component {
             <View style={[styles.container, this.getContainerPadding()]} onLayout={this._onLayout.bind(this)}>
                 <View style={styles.topContainer}>
                     <Button color={Colors.GREEN}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint1
-                    </Button>
+                            title="Hint1"
+                            onPress={this.launchTest.bind(this)}/>
+
                     <Button color={Colors.RED}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint2
-                    </Button>
+                            title="Hint2"
+                            onPress={this.launchTest.bind(this)}/>
+
                     <Button color={Colors.DARK_GOLD}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint3
-                    </Button>
+                            title="Hint3"
+                            onPress={this.launchTest.bind(this)}/>
                 </View>
 
                 <View style={styles.cardContainer}>
@@ -112,20 +107,16 @@ export default class DenominationTest extends Component {
 
                 <View style={styles.bottomContainer}>
                     <Button color={Colors.DARK_GOLD}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint1
-                    </Button>
+                            title="Hint1"
+                            onPress={this.launchTest.bind(this)}/>
+
                     <Button color={Colors.BLACK}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint2
-                    </Button>
+                            title="Hint2"
+                            onPress={this.launchTest.bind(this)}/>
+
                     <Button color={Colors.POWDER_BLUE}
-                            shape={Shapes.SQUARE}
-                            onPress={this.launchTest.bind(this)}>
-                        Hint3
-                    </Button>
+                            title="Hint3"
+                            onPress={this.launchTest.bind(this)}/>
                 </View>
             </View>
         )

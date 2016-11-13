@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component} from "react";
-import {StyleSheet, View, Text, TouchableHighlight, TextInput, ListView} from "react-native";
+import {StyleSheet, View, Text, TouchableHighlight, TextInput, Button, ListView} from "react-native";
 import Space from './Space';
 import Separator from './Separator';
 import Colors from '../constants/Colors';
@@ -91,13 +91,11 @@ export default class ScoreCard extends Component {
                         value={this.state.email}
                         onChange={this.handleChange.bind(this)}
                         placeholder="Email"/>
-
-                    <TouchableHighlight
-                        style={styles.button}
+                    <Button
+                        color={Colors.POWDER_BLUE}
                         onPress={this.handleSubmit.bind(this)}
-                        underlayColor="#88D4F5">
-                        <Text style={styles.buttonText}> Submit </Text>
-                    </TouchableHighlight>
+                        title="Envoyer"
+                        accessibilityLabel="Envoyer le résultat par émail"/>
                 </View>
             </View>
         );

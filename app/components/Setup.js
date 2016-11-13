@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView} from "react-native";
-import Button from "./Button";
+import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView, Button} from "react-native";
 import DenominationTest from './DenominationTest';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
@@ -137,10 +136,9 @@ export default class Setup extends Component {
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button color={Colors.GREEN}
-                            shape={Shapes.DEFAULT}
-                            onPress={this.launchTest.bind(this)}>
-                        Launch Test
-                    </Button>
+                            onPress={this.launchTest.bind(this)}
+                            title="Lancer le test"
+                            accessibilityLabel="Lancer le test"/>
                 </View>
             </View>
         );

@@ -58,18 +58,15 @@ export default class Main extends Component {
             <View style={styles.container}>
 
                     <Button color={Colors.GREEN}
-                            onPress={this.goToTestSetup.bind(this)}>
-                        Start Test
-                    </Button>
+                            title="Lancer le test"
+                            onPress={this.goToTestSetup.bind(this)}/>
 
 
                 <Space length={10} />
 
                     <Button color={Colors.GOLD}
-                            onPress={this.goToTestSetup.bind(this)}>
-                        Settings
-                    </Button>
-
+                            title="Paramètre global"
+                            onPress={this.goToTestSetup.bind(this)}/>
             </View>
         );
     }
