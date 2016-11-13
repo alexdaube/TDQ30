@@ -1,0 +1,3 @@
+rootProject.name = 'TDQ30'
+
+include ':app'
