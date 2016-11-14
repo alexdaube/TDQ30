@@ -32,7 +32,7 @@ export default class App extends Component {
             <NavigatorIOS
                 style={styles.container}
                 initialRoute={{
-                    title: "Main Menu",
+                    title: "Menu Principal",
                     component: Main
                 }}/>
         );
