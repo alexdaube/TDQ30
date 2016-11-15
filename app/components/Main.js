@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
             padding: 30,
             flexDirection: 'column',
             justifyContent: 'center',
-            backgroundColor: Colors.POWDER_BLUE
+            backgroundColor: Colors.LIGHT_GREY
         },
 
         buttonContainer: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
             marginLeft: 40,
             marginRight: 40,
             backgroundColor: Colors.GREEN,
-            borderRadius: Shapes.DEFAULT
+            borderRadius: Shapes.SQUARE
         },
         iconButtonContainer: {
             justifyContent: 'center',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 export default class Main extends Component {
     goToTestSetup() {
         this.props.navigator.push({
-            title: "Configuration TDQ30",
+            title: "Configuration patient",
             component: Setup
             //passProps: {userInfo: this.props.userInfo}
         });
@@ -51,12 +51,21 @@ export default class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
+
+                <View style={styles.buttonContainer}>
+                    <Button color={Colors.WHITE}
+                            title="Démarrer TDQ30"
+                            onPress={this.goToTestSetup.bind(this)}/>
+                </View>
+
+                <Space length={5}/>
+
                 <View style={styles.iconButtonContainer}>
                     <Icon.Button
                         name="question-circle"
                         backgroundColor={Colors.LIGHT_GREY}
                         onPress={this.goToTestSetup.bind(this)}
-                        borderRadius={Shapes.DEFAULT}
+                        borderRadius={Shapes.SQUARE}
                         color={Colors.BLACK}>
                         <Text>Tutoriel</Text>
                     </Icon.Button>
@@ -69,21 +78,11 @@ export default class Main extends Component {
                         name="gear"
                         backgroundColor={Colors.LIGHT_GREY}
                         onPress={this.goToTestSetup.bind(this)}
-                        borderRadius={Shapes.DEFAULT}
+                        borderRadius={Shapes.SQUARE}
                         color={Colors.BLACK}>
                         <Text>Paramètres</Text>
                     </Icon.Button>
                 </View>
-
-
-                <Space length={5}/>
-
-                <View style={styles.buttonContainer}>
-                    <Button color={Colors.WHITE}
-                            title="Démarrer TDQ30"
-                            onPress={this.goToTestSetup.bind(this)}/>
-                </View>
-
             </View>
         );
     }

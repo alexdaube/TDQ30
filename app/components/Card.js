@@ -2,14 +2,16 @@
 
 
 import React, {Component} from "react";
-import {StyleSheet, Image, Text, View} from "react-native";
+import {StyleSheet, Image, Text, View, Dimensions} from "react-native";
+
+let {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     card: {
         alignItems: 'center',
     },
     thumbnail: {
-        width: 200,
+        width: 150,
         height: 150
     }
 });

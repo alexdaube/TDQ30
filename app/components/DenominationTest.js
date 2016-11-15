@@ -7,28 +7,19 @@ import Card from "./Card";
 import ScoreCard from "./ScoreCard";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
-
-var image1 = require('../assets/images/wolf_1.jpg');
-var image2 = require('../assets/images/lion_2.jpg');
-var image3 = require('../assets/images/cat_3.jpg');
-
-const Cards = [
-    {id: 1, image: image1, name: 'wolf'},
-    {id: 2, image: image2, name: 'lion'},
-    {id: 3, image: image3, name: 'cat'}
-];
+import Cards from "../constants/Cards";
 
 export default class DenominationTest extends Component {
     constructor(props) {
         super(props);
-        let {height, width} = Dimensions.get('window');
+        // let {height, width} = Dimensions.get('window');
         this.state = {
             cards: Cards,
             outOfCards: false,
-            layout:{
-                height:height,
-                width:width
-            }
+            // layout:{
+            //     height:height,
+            //     width:width
+            // }
         };
     }
 
@@ -70,7 +61,9 @@ export default class DenominationTest extends Component {
 
     render() {
         return (
-            <View style={[styles.container, this.getContainerPadding()]} onLayout={this._onLayout.bind(this)}>
+            <View style={styles.container}>
+
+                <View style={styles.topBufferContainer}/>
                 <View style={styles.topContainer}>
                     <Button color={Colors.GREEN}
                             title="Hint1"
@@ -96,7 +89,7 @@ export default class DenominationTest extends Component {
                         handleYup={this.handleYup}
                         handleNope={this.handleNope}
                         cardRemoved={this.cardRemoved}
-                        containerStyle={{backgroundColor: '#f7f7f7', alignItems: 'center', margin: 40}}/>
+                        containerStyle={{backgroundColor: Colors.LIGHT_GREY, alignItems: 'center', margin: 40}}/>
                 </View>
 
                 <View Style={styles.hintContainer}>
@@ -126,25 +119,29 @@ export default class DenominationTest extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: 10
+        paddingBottom: 20,
+        backgroundColor: Colors.LIGHT_GREY
+    },
+    topBufferContainer: {
+        flex:1
     },
     topContainer: {
-        height: 30,
+        flex:0.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center'
     },
     cardContainer: {
-        height: 210
+        flex: 5
     },
     bottomContainer: {
-        height: 30,
+        flex:0.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
     hintContainer: {
-
+        flex:0.2
     },
     hintText: {
         fontSize: 12,

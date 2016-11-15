@@ -91,11 +91,14 @@ export default class ScoreCard extends Component {
                         value={this.state.email}
                         onChange={this.handleChange.bind(this)}
                         placeholder="Email"/>
-                    <Button
-                        color={Colors.POWDER_BLUE}
-                        onPress={this.handleSubmit.bind(this)}
-                        title="Envoyer"
-                        accessibilityLabel="Envoyer le résultat par émail"/>
+                    <View style={{backgroundColor: Colors.POWDER_BLUE, height: 60, alignItems: 'center', justifyContent:'center'}}>
+                        <Button
+                            color={Colors.WHITE}
+                            onPress={this.handleSubmit.bind(this)}
+                            title="Envoyer"
+                            accessibilityLabel="Envoyer le résultat par émail"/>
+                    </View>
+
                 </View>
             </View>
         );
