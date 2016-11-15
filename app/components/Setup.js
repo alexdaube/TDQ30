@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView} from "react-native";
-import Button from "./Button";
+import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView, Button, TextInput} from "react-native";
 import DenominationTest from './DenominationTest';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
+import educationLevels from "../constants/EducationLevels";
 
 const Item = Picker.Item;
 
@@ -17,49 +17,6 @@ let generateYears = function () {
     return years;
 };
 
-let educationLevels = [
-    {
-        name: "None",
-        level: 0
-    },
-    {
-        name: "Pre-School",
-        level: 1
-    },
-    {
-        name: "Elementary School",
-        level: 2
-    },
-    {
-        name: "High School",
-        level: 3
-    },
-    {
-        name: "College",
-        level: 4
-    },
-    {
-        name: "Technique",
-        level: 5
-    },
-    {
-        name: "University Bachelor",
-        level: 6
-    },
-    {
-        name: "University Master",
-        level: 7
-    },
-    {
-        name: "University Doctorate",
-        level: 8
-    },
-    {
-        name: "University Post-Doctorate",
-        level: 9
-    }
-];
-
 export default class Setup extends Component {
     constructor(props) {
         super(props);
@@ -71,7 +28,7 @@ export default class Setup extends Component {
 
     launchTest() {
         this.props.navigator.push({
-            title: "Test",
+            title: "TDQ30",
             component: DenominationTest,
             passProps: {results: ["Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4"]}
         });
@@ -102,10 +59,23 @@ export default class Setup extends Component {
         });
     }
 
+    handleChange() {}
+
 
     render() {
         return (
             <View style={styles.container}>
+
+                <View style={styles.topBufferContainer}/>
+
+                <View style={styles.dossierNumberContainer}>
+                    <TextInput
+                        style={styles.dossierNumberInput}
+                        value={this.state.email}
+                        onChange={this.handleChange.bind(this)}
+                        placeholder="# de dossier"/>
+
+                </View>
 
 
                 <View style={styles.pickersContainer}>
@@ -136,11 +106,10 @@ export default class Setup extends Component {
                     </View>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <Button color={Colors.GREEN}
-                            shape={Shapes.DEFAULT}
-                            onPress={this.launchTest.bind(this)}>
-                        Launch Test
-                    </Button>
+                    <Button color={Colors.WHITE}
+                            onPress={this.launchTest.bind(this)}
+                            title="Lancer le TDQ30"
+                            accessibilityLabel="Lancer le TDQ30"/>
                 </View>
             </View>
         );
@@ -151,12 +120,31 @@ export default class Setup extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 35,
-        backgroundColor: '#48BBEC'
+        //paddingTop: 45,
+        backgroundColor: Colors.LIGHT_GREY
+    },
+    topBufferContainer: {
+        flex: 1
+    },
+
+    dossierNumberContainer: {
+        flex:1,
+        alignSelf: 'center',
+        alignItems: 'flex-end'
+    },
+
+    dossierNumberInput: {
+        height: 30,
+        width: 200,
+        paddingLeft: 10,
+        paddingRight: 10,
+        fontSize: 14,
+        color: Colors.BLACK,
+        backgroundColor: Colors.WHITE
     },
 
     pickersContainer: {
-        paddingTop: 35,
+        paddingTop: 5,
         flex:4,
         flexDirection: "row",
     },
@@ -171,12 +159,14 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 10
+        padding: 3,
+        backgroundColor: Colors.GREEN
+
     },
 
     labelPicker: {
         fontSize: 12,
-        color: Colors.WHITE
+        color: Colors.BLACK
     },
 
     picker: {
@@ -184,6 +174,6 @@ const styles = StyleSheet.create({
     },
 
     pickerItem: {
-        fontSize: 10
+        fontSize: 8
     }
 });
