@@ -31,6 +31,11 @@ let trampoline = require('../assets/images/trampoline.jpg');
 let fan = require('../assets/images/fan.jpg');
 let ostrich = require('../assets/images/ostrich.jpg');
 
+// Types d'erreurs
+// Erreur Sémantique (ex. le sujet produit HIBOU au lieu de CHAUVE-SOURIS
+// Erreur Phonologique (ex. le sujet produit CHAULE-SOURIS)
+// Erreur visuelle (ex. le sujet produit CHAULE-SOURIS)
+
 const Cards = [
     {position: 1, image: peanut, name: 'peanut'},
     {position: 2, image: cactus, name: 'cactus'},
@@ -64,4 +69,12 @@ const Cards = [
     {position: 30, image: ostrich, name: 'ostrich'}
 ];
 
-export default Cards;
+export default Cards.map((card) => {
+    card.semantic = false;
+    card.phonological = false;
+    card.visual = false;
+    card.hinted = false;
+    card.hintOne = "Hello, I am hint one!";
+    card.hintTwo = "Hello, I am hint two!";
+    return card;
+});

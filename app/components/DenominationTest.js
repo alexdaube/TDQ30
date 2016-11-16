@@ -13,8 +13,11 @@ export default class DenominationTest extends Component {
     constructor(props) {
         super(props);
         // let {height, width} = Dimensions.get('window');
+        debugger;
         this.state = {
             cards: Cards,
+            currentPosition: 1,
+            hint: "",
             outOfCards: false,
             // layout:{
             //     height:height,
@@ -43,8 +46,20 @@ export default class DenominationTest extends Component {
         console.log(`The index is ${index}`);
     }
 
-    launchTest() {
+    getHintOne() {
+        this.setState({
+            hint: this.state.cards.find((card) => card.position == this.state.currentPosition).hintOne
+        });
+
     }
+
+    getHintTwo() {
+        this.setState({
+            hint: this.state.cards.find((card) => card.position == this.state.currentPosition).hintTwo
+        });
+    }
+
+    launchTest() {}
 
     _onLayout(event) {
         this.setState({
@@ -94,22 +109,19 @@ export default class DenominationTest extends Component {
 
                 <View Style={styles.hintContainer}>
                     <Text style={styles.hintText}>
-                        Je commence par L
+                        {this.state.hint}
                     </Text>
                 </View>
 
                 <View style={styles.bottomContainer}>
                     <Button color={Colors.DARK_GOLD}
                             title="Hint1"
-                            onPress={this.launchTest.bind(this)}/>
+                            onPress={this.getHintOne.bind(this)}/>
 
                     <Button color={Colors.BLACK}
                             title="Hint2"
-                            onPress={this.launchTest.bind(this)}/>
+                            onPress={this.getHintTwo.bind(this)}/>
 
-                    <Button color={Colors.POWDER_BLUE}
-                            title="Hint3"
-                            onPress={this.launchTest.bind(this)}/>
                 </View>
             </View>
         )
