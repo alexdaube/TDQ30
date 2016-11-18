@@ -5,6 +5,7 @@ import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} fro
 import SwipeCards from "react-native-swipe-cards";
 import Card from "./Card";
 import ScoreCard from "./ScoreCard";
+import TestCompleteCard from "./TestCompleteCard";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Cards from "../constants/Cards";
@@ -13,7 +14,6 @@ export default class DenominationTest extends Component {
     constructor(props) {
         super(props);
         // let {height, width} = Dimensions.get('window');
-        debugger;
         this.state = {
             cards: Cards,
             currentPosition: 1,
@@ -26,24 +26,16 @@ export default class DenominationTest extends Component {
         };
     }
 
-    getResults() {
-        this.props.navigator.push({
-            title: "Test Results",
-            component: ScoreCard,
-            passProps: {results: ["Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4"]}
-        });
-    }
-
     handleYup() {
-        console.log("yup");
+        console.log("This is Yup action with card at position: " +  this.state.currentPosition);
     }
 
     handleNope() {
-        console.log("nope")
+        console.log("This is Nope action with card at position: " +  this.state.currentPosition);
     }
 
-    cardRemoved(index) {
-        console.log(`The index is ${index}`);
+    cardRemoved() {
+        this.state.currentPosition += 1;
     }
 
     getHintOne() {
@@ -53,6 +45,11 @@ export default class DenominationTest extends Component {
 
     }
 
+    renderNextCard() {
+        var nextCardToRender = this.state.cards.find((card) => card.position == this.state.currentPosition);
+        return <Card {...nextCardToRender}/>;
+    }
+
     getHintTwo() {
         this.setState({
             hint: this.state.cards.find((card) => card.position == this.state.currentPosition).hintTwo
@@ -60,6 +57,23 @@ export default class DenominationTest extends Component {
     }
 
     launchTest() {}
+
+    goToPreviousCard() {
+        if (this.state.currentPosition > 1) {
+            let previousPosition = this.state.currentPosition - 1;
+            this.setState({
+                currentPosition : previousPosition,
+                hint: ""
+            });
+        }
+    }
+
+    goToEndOfTest() {
+        this.props.navigator.push({
+            title: "Test Results",
+            component: TestCompleteCard
+        });
+    }
 
     _onLayout(event) {
         this.setState({
@@ -97,13 +111,13 @@ export default class DenominationTest extends Component {
                     <SwipeCards
                         cards={this.state.cards}
                         loop={false}
-                        renderCard={(cardData) => <Card {...cardData} />}
-                        renderNoMoreCards={this.getResults.bind(this)}
+                        renderCard={this.renderNextCard.bind(this)}
+                        renderNoMoreCards={this.goToEndOfTest.bind(this)}
                         showYup={false}
                         showNope={false}
-                        handleYup={this.handleYup}
-                        handleNope={this.handleNope}
-                        cardRemoved={this.cardRemoved}
+                        handleYup={this.handleYup.bind(this)}
+                        handleNope={this.handleNope.bind(this)}
+                        cardRemoved={this.cardRemoved.bind(this)}
                         containerStyle={{backgroundColor: Colors.LIGHT_GREY, alignItems: 'center', margin: 40}}/>
                 </View>
 
@@ -121,6 +135,16 @@ export default class DenominationTest extends Component {
                     <Button color={Colors.BLACK}
                             title="Hint2"
                             onPress={this.getHintTwo.bind(this)}/>
+
+
+                    <Button color={Colors.BLACK}
+                            title="Previous"
+                            onPress={this.goToPreviousCard.bind(this)}/>
+
+                    <Button color={Colors.RED}
+                            title="End"
+                            onPress={this.goToEndOfTest.bind(this)}/>
+
 
                 </View>
             </View>

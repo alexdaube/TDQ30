@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {StyleSheet, View, TouchableHighlight, Text, Button} from "react-native";
 import Setup from "./Setup";
+import Tutorial from './Tutorial';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Space from "./Space";
@@ -32,11 +33,30 @@ const styles = StyleSheet.create({
 );
 
 export default class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showTutorial: false
+        };
+    }
+
     goToTestSetup() {
         this.props.navigator.push({
             title: "Configuration patient",
             component: Setup
             //passProps: {userInfo: this.props.userInfo}
+        });
+    }
+
+    openTutorial() {
+        this.setState({
+            showTutorial: true
+        });
+    }
+
+    closeTutorial() {
+        this.setState({
+            showTutorial: false
         });
     }
 
@@ -51,6 +71,7 @@ export default class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Tutorial tutorialVisibility={this.state.showTutorial} onTutorialClose={this.closeTutorial.bind(this)}/>
 
                 <View style={styles.buttonContainer}>
                     <Button color={Colors.WHITE}
@@ -64,7 +85,7 @@ export default class Main extends Component {
                     <Icon.Button
                         name="question-circle"
                         backgroundColor={Colors.LIGHT_GREY}
-                        onPress={this.goToTestSetup.bind(this)}
+                        onPress={this.openTutorial.bind(this)}
                         borderRadius={Shapes.SQUARE}
                         color={Colors.BLACK}>
                         <Text>Tutoriel</Text>
