@@ -71,7 +71,9 @@ export default class Main extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Tutorial tutorialVisibility={this.state.showTutorial} onTutorialClose={this.closeTutorial.bind(this)}/>
+                <Tutorial
+                    tutorialVisibility={this.state.showTutorial}
+                    tutorialClose={this.closeTutorial.bind(this)}/>
 
                 <View style={styles.buttonContainer}>
                     <Button color={Colors.WHITE}

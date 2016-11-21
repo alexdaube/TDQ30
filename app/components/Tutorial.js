@@ -40,20 +40,22 @@ const styles = StyleSheet.create({
 });
 
 export default class Tutorial extends Component {
-    close() {}
+    closeTheModal() {
+        this.props.tutorialClose();
+    }
+
     render() {
         return (
             <Modal
                 animationType={"slide"}
                 transparent={false}
-                visible={this.props.tutorialVisibility}
-                onRequestClose={this.props.onTutorialClose}>
+                visible={this.props.tutorialVisibility}>
                 <View style={styles.container}>
                     <Icon.Button name="times-circle"
                                  color={Colors.RED}
                                  backgroundColor="transparent"
                                  size={20}
-                                 onPress={this.close.bind(this)}/>
+                                 onPress={this.closeTheModal.bind(this)}/>
                     <Text>This is a modal</Text>
                 </View>
             </Modal>
