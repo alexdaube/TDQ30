@@ -71,7 +71,8 @@ export default class DenominationTest extends Component {
     goToEndOfTest() {
         this.props.navigator.push({
             title: "Test Results",
-            component: TestCompleteCard
+            component: TestCompleteCard,
+            passProps: {dateOfBirth: this.props.dateOfBirth, educationLevel: this.props.educationLevel,  dossier: this.props.dossier}
         });
     }
 

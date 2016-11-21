@@ -43,7 +43,7 @@ export default class TestCompleteCard extends Component {
         this.props.navigator.push({
             title: "Test Results",
             component: ScoreCard,
-            passProps: {results: ["Result1","Result1","Result1","Result1","Result1","Result1","Result1","Result1"]}
+            passProps: {dateOfBirth: this.props.dateOfBirth, educationLevel: this.props.educationLevel,  dossier: this.props.dossier}
         });
     }
 

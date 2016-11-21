@@ -4,25 +4,17 @@ import DenominationTest from './DenominationTest';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import educationLevels from "../constants/EducationLevels";
+import years from '../constants/Years';
 
 const Item = Picker.Item;
-
-let generateYears = function () {
-    let year = new Date().getFullYear();
-    let years = [];
-    for (let i = 0; i < 100; i++) {
-        years.push(year);
-        year -= 1;
-    }
-    return years;
-};
 
 export default class Setup extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dateOfBirth: 1980,
-            educationLevel: 3
+            educationLevel: 3,
+            dossier: ''
         };
     }
 
@@ -30,12 +22,12 @@ export default class Setup extends Component {
         this.props.navigator.push({
             title: "TDQ30",
             component: DenominationTest,
-            passProps: {results: ["Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4", "Result1", "Result2", "Result3", "Result4"]}
+            passProps: {dateOfBirth: this.state.dateOfBirth, educationLevel: this.state.educationLevel,  dossier: this.state.dossier}
         });
     }
 
     generateDatesOfBirth() {
-        return generateYears().map((item, index) => {
+        return years.map((item, index) => {
             return <Item label={item.toString()} value={item} key={index}/>
         });
     }
@@ -45,7 +37,6 @@ export default class Setup extends Component {
             dateOfBirth: year
         });
     }
-
 
     generateEducationLevels() {
         return educationLevels.map((item, index) => {
@@ -59,7 +50,12 @@ export default class Setup extends Component {
         });
     }
 
-    handleChange() {}
+    handleChange(text) {
+        this.setState({
+            dossier: text
+        });
+    }
+
 
 
     render() {
@@ -71,8 +67,9 @@ export default class Setup extends Component {
                 <View style={styles.dossierNumberContainer}>
                     <TextInput
                         style={styles.dossierNumberInput}
-                        value={this.state.email}
-                        onChange={this.handleChange.bind(this)}
+                        value={this.state.dossier}
+                        autoCorrect={false}
+                        onChangeText={this.handleChange.bind(this)}
                         placeholder="# de dossier"/>
 
                 </View>
