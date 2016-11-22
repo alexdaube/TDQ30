@@ -73,8 +73,10 @@ export default Cards.map((card) => {
     card.semantic = false;
     card.phonological = false;
     card.visual = false;
+    card.errorReported = false;
     card.hinted = false;
     card.hintOne = "Hello, I am hint one!";
     card.hintTwo = "Hello, I am hint two!";
+    card.score = 0;
     return card;
 });

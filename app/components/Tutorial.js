@@ -79,15 +79,20 @@ export default class Tutorial extends Component {
         this.props.tutorialClose();
     }
 
-    render() {
+    orientationChange(event) {
+        this.setState({
+            currentOrientation: event.nativeEvent.orientation
+        });
+    }
 
+    render() {
         return (
             <Modal
                 animationType={"slide"}
                 transparent={false}
                 visible={this.props.tutorialVisibility}
                 supportedOrientations={supportedOrientationsPickerValues[this.state.selectedSupportedOrientation]}
-                onOrientationChange={(event) => this.setState({currentOrientation: event.nativeEvent.orientation})}>
+                onOrientationChange={this.orientationChange.bind(this)}>
                 <View style={styles.container}>
                     <View style={styles.closeButtonContainer}>
                         <Icon.Button name="times-circle"

@@ -8,7 +8,7 @@ import ScoreCard from "./ScoreCard";
 import TestCompleteCard from "./TestCompleteCard";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
-import Cards from "../constants/Cards";
+import Cards from "../domain/Cards";
 
 export default class DenominationTest extends Component {
     constructor(props) {
@@ -27,11 +27,18 @@ export default class DenominationTest extends Component {
     }
 
     handleYup() {
-        console.log("This is Yup action with card at position: " +  this.state.currentPosition);
+        let currentCard = this._getCurrentCard();
+        this._getCurrentCard().score =  currentCard.errorReported || currentCard.hinted ? 0 : 1;
+        this.setState({
+            hint: ''
+        });
+
     }
 
     handleNope() {
-        console.log("This is Nope action with card at position: " +  this.state.currentPosition);
+        this.setState({
+            hint: ''
+        });
     }
 
     cardRemoved() {
@@ -39,31 +46,56 @@ export default class DenominationTest extends Component {
     }
 
     getHintOne() {
+        this._getCurrentCard().hinted = true;
         this.setState({
-            hint: this.state.cards.find((card) => card.position == this.state.currentPosition).hintOne
+            hint: this._getCurrentCard().hintOne
         });
 
-    }
-
-    renderNextCard() {
-        var nextCardToRender = this.state.cards.find((card) => card.position == this.state.currentPosition);
-        return <Card {...nextCardToRender}/>;
     }
 
     getHintTwo() {
+        this._getCurrentCard().hinted = true;
         this.setState({
-            hint: this.state.cards.find((card) => card.position == this.state.currentPosition).hintTwo
+            hint: this._getCurrentCard().hintTwo
         });
     }
 
-    launchTest() {}
+    renderNextCard() {
+        var nextCardToRender = this._getCurrentCard();
+        return <Card {...nextCardToRender}/>;
+    }
 
     goToPreviousCard() {
         if (this.state.currentPosition > 1) {
+
             let previousPosition = this.state.currentPosition - 1;
+
+            // Reset current and previous card (like an undo)
+            let currentCard = this.state.cards[this.state.currentPosition - 1];
+
+            currentCard.semantic = false;
+            currentCard.phonological = false;
+            currentCard.visual = false;
+            currentCard.errorReported = false;
+            currentCard.hinted = false;
+            currentCard.score = 0;
+
+            this.state.cards[this.state.currentPosition - 1] = currentCard;
+
+            let previousCard = this.state.cards[previousPosition - 1];
+
+            previousCard.semantic = false;
+            previousCard.phonological = false;
+            previousCard.visual = false;
+            previousCard.errorReported = false;
+            previousCard.hinted = false;
+            previousCard.score = 0;
+
+            this.state.cards[previousPosition - 1] = previousCard;
+
             this.setState({
                 currentPosition : previousPosition,
-                hint: ""
+                hint: ''
             });
         }
     }
@@ -75,6 +107,28 @@ export default class DenominationTest extends Component {
             passProps: {dateOfBirth: this.props.dateOfBirth, educationLevel: this.props.educationLevel,  dossier: this.props.dossier}
         });
     }
+
+    addSemanticError() {
+        //let currentCard = this._getCurrentCard();
+        this._getCurrentCard().semantic = true;
+        this._getCurrentCard().errorReported = true;
+        // this.state.cards[this.state.currentPosition - 1] = currentCard;
+    }
+
+    addPhonologicalError() {
+        this._getCurrentCard().phonological = true;
+        this._getCurrentCard().errorReported = true;
+    }
+
+    addVisualError() {
+        this._getCurrentCard().visual = true;
+        this._getCurrentCard().errorReported = true;
+    }
+
+    _getCurrentCard() {
+        return this.state.cards.find((card) => card.position == this.state.currentPosition);
+    }
+
 
     _onLayout(event) {
         this.setState({
@@ -97,15 +151,15 @@ export default class DenominationTest extends Component {
                 <View style={styles.topContainer}>
                     <Button color={Colors.GREEN}
                             title="Hint1"
-                            onPress={this.launchTest.bind(this)}/>
+                            onPress={this.addSemanticError.bind(this)}/>
 
                     <Button color={Colors.RED}
                             title="Hint2"
-                            onPress={this.launchTest.bind(this)}/>
+                            onPress={this.addPhonologicalError.bind(this)}/>
 
                     <Button color={Colors.DARK_GOLD}
                             title="Hint3"
-                            onPress={this.launchTest.bind(this)}/>
+                            onPress={this.addVisualError.bind(this)}/>
                 </View>
 
                 <View style={styles.cardContainer}>
