@@ -43,11 +43,16 @@ export default class TestCompleteCard extends Component {
         this.props.navigator.push({
             title: "Test Results",
             component: ScoreCard,
-            passProps: {dateOfBirth: this.props.dateOfBirth, educationLevel: this.props.educationLevel,  dossier: this.props.dossier}
+            passProps: {
+                dateOfBirth: this.props.dateOfBirth,
+                educationLevel: this.props.educationLevel,
+                dossier: this.props.dossier
+            }
         });
     }
 
     render() {
+        debugger;
         return (
             <View style={styles.container}>
                 <View style={styles.iconTextContainer}>

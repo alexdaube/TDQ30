@@ -4,11 +4,12 @@ import React, {Component} from "react";
 import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} from "react-native";
 import SwipeCards from "react-native-swipe-cards";
 import Card from "./Card";
-import ScoreCard from "./ScoreCard";
 import TestCompleteCard from "./TestCompleteCard";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Cards from "../domain/Cards";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 export default class DenominationTest extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class DenominationTest extends Component {
 
     handleYup() {
         let currentCard = this._getCurrentCard();
-        this._getCurrentCard().score =  currentCard.errorReported || currentCard.hinted ? 0 : 1;
+        this._getCurrentCard().score = currentCard.errorReported || currentCard.hinted ? 0 : 1;
         this.setState({
             hint: ''
         });
@@ -94,7 +95,7 @@ export default class DenominationTest extends Component {
             this.state.cards[previousPosition - 1] = previousCard;
 
             this.setState({
-                currentPosition : previousPosition,
+                currentPosition: previousPosition,
                 hint: ''
             });
         }
@@ -104,7 +105,12 @@ export default class DenominationTest extends Component {
         this.props.navigator.push({
             title: "Test Results",
             component: TestCompleteCard,
-            passProps: {dateOfBirth: this.props.dateOfBirth, educationLevel: this.props.educationLevel,  dossier: this.props.dossier}
+            passProps: {
+                cards: this.state.cards,
+                dateOfBirth: this.props.dateOfBirth,
+                educationLevel: this.props.educationLevel,
+                dossier: this.props.dossier
+            }
         });
     }
 
@@ -132,15 +138,15 @@ export default class DenominationTest extends Component {
 
     _onLayout(event) {
         this.setState({
-            layout:{
-                height:event.nativeEvent.layout.height,
-                width:event.nativeEvent.layout.width
+            layout: {
+                height: event.nativeEvent.layout.height,
+                width: event.nativeEvent.layout.width
             }
         });
     }
 
     getContainerPadding() {
-        return (this.state.layout.width > this.state.layout.height) ?  {paddingTop: 35} :  {paddingTop: 75};
+        return (this.state.layout.width > this.state.layout.height) ? {paddingTop: 35} : {paddingTop: 75};
     }
 
     render() {
@@ -149,16 +155,19 @@ export default class DenominationTest extends Component {
 
                 <View style={styles.topBufferContainer}/>
                 <View style={styles.topContainer}>
-                    <Button color={Colors.GREEN}
-                            title="Hint1"
-                            onPress={this.addSemanticError.bind(this)}/>
-
-                    <Button color={Colors.RED}
-                            title="Hint2"
-                            onPress={this.addPhonologicalError.bind(this)}/>
+                    <View style={{marginRight: 60}}>
+                        <Button color={Colors.GREEN}
+                                title="1"
+                                onPress={this.addSemanticError.bind(this)}/>
+                    </View>
+                    <View style={{marginRight: 60}}>
+                        <Button color={Colors.POWDER_BLUE}
+                                title="2"
+                                onPress={this.addPhonologicalError.bind(this)}/>
+                    </View>
 
                     <Button color={Colors.DARK_GOLD}
-                            title="Hint3"
+                            title="3"
                             onPress={this.addVisualError.bind(this)}/>
                 </View>
 
@@ -183,29 +192,39 @@ export default class DenominationTest extends Component {
                 </View>
 
                 <View style={styles.bottomContainer}>
-                    <Button color={Colors.DARK_GOLD}
-                            title="Hint1"
-                            onPress={this.getHintOne.bind(this)}/>
+                    <View style={{marginRight: 10}}>
+                        <Icon.Button
+                            name="low-vision"
+                            backgroundColor={Colors.BLACK}
+                            onPress={this.getHintOne.bind(this)}
+                            borderRadius={Shapes.SQUARE}
+                            color={Colors.WHITE}>
+                            <Text style={{color: Colors.WHITE}}>Indice 1</Text>
+                        </Icon.Button>
+                    </View>
 
-                    <Button color={Colors.BLACK}
-                            title="Hint2"
-                            onPress={this.getHintTwo.bind(this)}/>
-
-
-                    <Button color={Colors.BLACK}
-                            title="Previous"
-                            onPress={this.goToPreviousCard.bind(this)}/>
-
-                    <Button color={Colors.RED}
-                            title="End"
-                            onPress={this.goToEndOfTest.bind(this)}/>
-
-
+                    <Icon.Button
+                        name="low-vision"
+                        backgroundColor={Colors.BLACK}
+                        onPress={this.getHintTwo.bind(this)}
+                        borderRadius={Shapes.SQUARE}
+                        color={Colors.WHITE}>
+                        <Text style={{color: Colors.WHITE}}>Indice 2</Text>
+                    </Icon.Button>
                 </View>
             </View>
         )
     }
 }
+
+// <Button color={Colors.RED}
+// title="End"
+// onPress={this.goToEndOfTest.bind(this)}/>
+
+//
+// <Button color={Colors.BLACK}
+// title="Previous"
+// onPress={this.goToPreviousCard.bind(this)}/>
 
 const styles = StyleSheet.create({
     container: {
@@ -214,10 +233,10 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.LIGHT_GREY
     },
     topBufferContainer: {
-        flex:1
+        flex: 1
     },
     topContainer: {
-        flex:0.5,
+        flex: 0.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center'
@@ -226,13 +245,13 @@ const styles = StyleSheet.create({
         flex: 5
     },
     bottomContainer: {
-        flex:0.5,
+        flex: 0.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
         justifyContent: 'center',
     },
     hintContainer: {
-        flex:0.2
+        flex: 0.2
     },
     hintText: {
         fontSize: 12,
