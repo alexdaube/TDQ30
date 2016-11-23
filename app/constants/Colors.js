@@ -10,4 +10,9 @@ export default {
     WHITE: '#fff',
     POWDER_BLUE: "#48BBEC",
     LIGHT_GREY: "#E3E3E3",
+
+    // Code Specific
+    VISUAL:'#E0A600',
+    PHONOLOGICAL:"#48BBEC",
+    SEMANTIC: '#2ecc71',
 }

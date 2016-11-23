@@ -44,6 +44,7 @@ export default class TestCompleteCard extends Component {
             title: "Test Results",
             component: ScoreCard,
             passProps: {
+                cards: this.props.cards,
                 dateOfBirth: this.props.dateOfBirth,
                 educationLevel: this.props.educationLevel,
                 dossier: this.props.dossier
@@ -52,7 +53,6 @@ export default class TestCompleteCard extends Component {
     }
 
     render() {
-        debugger;
         return (
             <View style={styles.container}>
                 <View style={styles.iconTextContainer}>

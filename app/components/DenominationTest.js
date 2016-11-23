@@ -156,17 +156,17 @@ export default class DenominationTest extends Component {
                 <View style={styles.topBufferContainer}/>
                 <View style={styles.topContainer}>
                     <View style={{marginRight: 60}}>
-                        <Button color={Colors.GREEN}
+                        <Button color={Colors.SEMANTIC}
                                 title="1"
                                 onPress={this.addSemanticError.bind(this)}/>
                     </View>
                     <View style={{marginRight: 60}}>
-                        <Button color={Colors.POWDER_BLUE}
+                        <Button color={Colors.PHONOLOGICAL}
                                 title="2"
                                 onPress={this.addPhonologicalError.bind(this)}/>
                     </View>
 
-                    <Button color={Colors.DARK_GOLD}
+                    <Button color={Colors.VISUAL}
                             title="3"
                             onPress={this.addVisualError.bind(this)}/>
                 </View>
@@ -211,15 +211,15 @@ export default class DenominationTest extends Component {
                         color={Colors.WHITE}>
                         <Text style={{color: Colors.WHITE}}>Indice 2</Text>
                     </Icon.Button>
+
+                    <Button color={Colors.RED}
+                            title="End"
+                            onPress={this.goToEndOfTest.bind(this)}/>
                 </View>
             </View>
         )
     }
 }
-
-// <Button color={Colors.RED}
-// title="End"
-// onPress={this.goToEndOfTest.bind(this)}/>
 
 //
 // <Button color={Colors.BLACK}
