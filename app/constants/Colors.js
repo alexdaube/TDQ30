@@ -10,6 +10,7 @@ export default {
     WHITE: '#fff',
     POWDER_BLUE: "#48BBEC",
     LIGHT_GREY: "#E3E3E3",
+    PALE_RED: "#ec4c4c",
 
     // Code Specific
     VISUAL:'#E0A600',

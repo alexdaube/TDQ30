@@ -1,11 +1,12 @@
 import React, {Component} from "react";
-import {StyleSheet, View, TouchableHighlight, Text, Button} from "react-native";
+import {StyleSheet, View, TouchableHighlight, Text, Button, Image} from "react-native";
 import Setup from "./Setup";
 import Tutorial from './Tutorial';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Space from "./Space";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 
 const styles = StyleSheet.create({
         container: {
@@ -82,6 +83,9 @@ export default class Main extends Component {
                 </View>
 
                 <Space length={5}/>
+
+                <Image source={require('../assets/images/tdqLogo.png')}
+                style={{width: 100, height: 100}}/>
 
                 <View style={styles.iconButtonContainer}>
                     <Icon.Button
