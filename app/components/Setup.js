@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView, Button, TextInput} from "react-native";
 import DenominationTest from './DenominationTest';
+import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import educationLevels from "../constants/EducationLevels";
@@ -62,6 +63,12 @@ export default class Setup extends Component {
         return (
             <View style={styles.container}>
 
+                <Nav
+                    backMethod={() => this.props.navigator.replace({id: 'home'})}
+                    backText='menu principal'
+                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
+
                 <View style={styles.topBufferContainer}/>
 
                 <View style={styles.dossierNumberContainer}>
@@ -117,7 +124,6 @@ export default class Setup extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        //paddingTop: 45,
         backgroundColor: Colors.LIGHT_GREY
     },
     topBufferContainer: {

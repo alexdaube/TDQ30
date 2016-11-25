@@ -1,47 +1,97 @@
 'use strict';
 
-import React, {Component} from 'react';
-import {StyleSheet, NavigatorExperimental} from 'react-native';
-
-import Main from '../components/Main';
-
-const {
-    CardStack: NavigationCardStack,
-    StateUtils: NavigationStateUtils,
-} = NavigationExperimental;
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#111111"
-    }
-});
+import React, {Component} from "react";
+import {Navigator, View} from "react-native";
+import Main from "../components/Main";
+//import Settings from "../components/Settings";
+import Tutorial from "../components/Tutorial";
+import Setup from "../components/Setup";
+import DenominationTest from "../components/DenominationTest";
+import TestCompleteCard from "../components/TestCompleteCard";
+import ScoreCard from "../components/ScoreCard";
 
 
-class TDQ extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            // This defines the initial navigation state.
-            navigationState: {
-                index: 0,// Starts with first route focused.
-                routes: [{key: 'My Initial Scene'}], // Starts with only one route.
-            }
-        };
-
-        // We'll define this function later - hang on
-        this._onNavigationChange = this._onNavigationChange.bind(this);
+export default class TDQ extends Component {
+    constructor(props) {
+        super(props);
     }
 
-    _onNavigationChange(type) {
-        // It's literally the next step. We'll get to it!
-    }
+    renderScene(route, navigator) {
+        var {state, actions} = this.props;
+        var routeId = route.id;
 
+        //debugger;
+        if (routeId == 'home') {
+            return (
+                <Main
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+        // else if (routeId === 'settings') {
+        //     return (
+        //         <Messages
+        //             {...this.props}
+        //             navigator={navigator}/>
+        //     );
+        // }
+        else if (routeId == 'tutorial') {
+            return (
+                <Tutorial
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+
+        else if (routeId == 'setup') {
+            return (
+                <Setup
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+
+        else if (routeId == 'test') {
+            return (
+                <DenominationTest
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+
+        else if (routeId == 'testCompleted') {
+            return (
+                <TestCompleteCard
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+
+        else if (routeId == 'result') {
+            return (
+                <ScoreCard
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+         else {
+            return (
+                <Main
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
+    }
 
     render() {
         return (
-            <Text>This is a placeholder. We will come back to this and render our navigation here later.</Text>
+            <View style={{flex:1}}>
+                <Navigator
+                    style={{flex:1}}
+                    ref={'NAV'}
+                    initialRoute={{id: 'home', name: 'home'}}
+                    renderScene={this.renderScene.bind(this)}/>
+            </View>
         );
     }
 }

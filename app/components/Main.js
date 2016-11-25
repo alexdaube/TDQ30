@@ -5,15 +5,14 @@ import Tutorial from './Tutorial';
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Space from "./Space";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Nav from "./Nav";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const styles = StyleSheet.create({
         container: {
             flex: 1,
-            padding: 30,
             flexDirection: 'column',
-            justifyContent: 'center',
             backgroundColor: Colors.LIGHT_GREY
         },
 
@@ -43,9 +42,8 @@ export default class Main extends Component {
 
     goToTestSetup() {
         this.props.navigator.push({
-            title: "Configuration patient",
-            component: Setup
-            //passProps: {userInfo: this.props.userInfo}
+            id: "setup",
+            name: "Configuration patient",
         });
     }
 
@@ -63,18 +61,22 @@ export default class Main extends Component {
 
 
     goToSettings() {
-        this.props.navigator.push({
-            title: "Test Setup",
-            component: Setup
-        });
+        this.props.navigator.replace(
+            {id: 'setting'})
     }
 
     render() {
         return (
             <View style={styles.container}>
+
+                <Nav homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
                 <Tutorial
                     tutorialVisibility={this.state.showTutorial}
                     tutorialClose={this.closeTutorial.bind(this)}/>
+
+
+
+                <Space length={40}/>
 
                 <View style={styles.buttonContainer}>
                     <Button color={Colors.WHITE}
@@ -84,12 +86,9 @@ export default class Main extends Component {
 
                 <Space length={5}/>
 
-                <Image source={require('../assets/images/tdqLogo.png')}
-                style={{width: 100, height: 100}}/>
-
                 <View style={styles.iconButtonContainer}>
                     <Icon.Button
-                        name="question-circle"
+                        name="ios-information-circle"
                         backgroundColor={Colors.LIGHT_GREY}
                         onPress={this.openTutorial.bind(this)}
                         borderRadius={Shapes.SQUARE}
@@ -102,7 +101,7 @@ export default class Main extends Component {
 
                 <View style={styles.iconButtonContainer}>
                     <Icon.Button
-                        name="gear"
+                        name="ios-cog"
                         backgroundColor={Colors.LIGHT_GREY}
                         onPress={this.goToTestSetup.bind(this)}
                         borderRadius={Shapes.SQUARE}
