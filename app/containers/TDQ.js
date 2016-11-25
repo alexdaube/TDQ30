@@ -17,10 +17,10 @@ export default class TDQ extends Component {
     }
 
     renderScene(route, navigator) {
+
         var {state, actions} = this.props;
         var routeId = route.id;
 
-        //debugger;
         if (routeId == 'home') {
             return (
                 <Main
@@ -55,7 +55,10 @@ export default class TDQ extends Component {
             return (
                 <DenominationTest
                     {...this.props}
-                    navigator={navigator}/>
+                    navigator={navigator}
+                    dateOfBirth={route.dateOfBirth}
+                    educationLevel={route.educationLevel}
+                    dossier={route.dossier}/>
             );
         }
 

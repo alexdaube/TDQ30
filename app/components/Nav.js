@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {StyleSheet, Image, Text, Button, View, TouchableOpacity} from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import Colors from "../constants/Colors";
 
 const styles = StyleSheet.create({
     container: {
@@ -12,6 +13,18 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderBottomWidth: 1,
         borderColor: 'rgba(0,0,0,0.1)'
+    },
+
+    icon: {
+        paddingTop: 10
+    },
+
+    iconLeft: {
+        paddingLeft: 10
+    },
+
+    iconRight: {
+        paddingRight: 10
     },
 
     logo: {
@@ -35,11 +48,13 @@ let logo = function (homeMethod) {
 
 let help = function (helpMethod) {
     return (
-        <Icon.Button name="ion-information-circled"
-                     color={Colors.RED}
-                     backgroundColor="transparent"
-                     size={24}
-                     onPress={helpMethod}/>
+        <View style={[styles.icon, styles.iconRight]}>
+            <Icon.Button name="ios-information-circle"
+                         color={Colors.POWDER_BLUE}
+                         backgroundColor="transparent"
+                         size={28}
+                         onPress={helpMethod}/>
+        </View>
     );
 };
 
@@ -48,13 +63,15 @@ export default class Nav extends Component {
         // Props: homeMethod, backMethod, backText, helpMethod
         return (
             <View style={styles.container}>
-                <Icon.Button name="ion-arrow-left-c"
-                             color={Colors.RED}
-                             backgroundColor="transparent"
-                             size={24}
-                             onPress={this.props.backMethod}>
-                    <Text> this.props.backText</Text>
-                </Icon.Button>
+                <View style={[styles.icon, styles.iconLeft]}>
+                    <Icon.Button name="md-return-left"
+                                 color={Colors.PALE_RED}
+                                 backgroundColor="transparent"
+                                 size={28}
+                                 onPress={this.props.backMethod}>
+                        <Text> {this.props.backText}</Text>
+                    </Icon.Button>
+                </View>
                 {logo(this.props.homeMethod)}
                 {help(this.props.helpMethod)}
             </View>

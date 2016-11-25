@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import {StyleSheet, View, TouchableHighlight, Text, Picker, ScrollView, Button, TextInput} from "react-native";
-import DenominationTest from './DenominationTest';
 import Nav from "./Nav";
 import Colors from "../constants/Colors";
-import Shapes from "../constants/Shapes";
 import educationLevels from "../constants/EducationLevels";
-import years from '../constants/Years';
+import years from "../constants/Years";
 
 const Item = Picker.Item;
 
@@ -21,9 +19,11 @@ export default class Setup extends Component {
 
     launchTest() {
         this.props.navigator.push({
-            title: "TDQ30",
-            component: DenominationTest,
-            passProps: {dateOfBirth: this.state.dateOfBirth, educationLevel: this.state.educationLevel,  dossier: this.state.dossier}
+            id: 'test',
+            name: "TDQ30",
+            dateOfBirth: this.state.dateOfBirth,
+            educationLevel: this.state.educationLevel,
+            dossier: this.state.dossier
         });
     }
 
@@ -58,18 +58,17 @@ export default class Setup extends Component {
     }
 
 
-
     render() {
         return (
             <View style={styles.container}>
 
                 <Nav
-                    backMethod={() => this.props.navigator.replace({id: 'home'})}
-                    backText='menu principal'
+                    type='backLogoHelp'
+                    backMethod={() => this.props.navigator.pop()}
+                    backText=''
                     helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
 
-                <View style={styles.topBufferContainer}/>
 
                 <View style={styles.dossierNumberContainer}>
                     <TextInput
@@ -78,7 +77,6 @@ export default class Setup extends Component {
                         autoCorrect={false}
                         onChangeText={this.handleChange.bind(this)}
                         placeholder="# de dossier"/>
-
                 </View>
 
 
@@ -126,14 +124,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.LIGHT_GREY
     },
-    topBufferContainer: {
-        flex: 1
-    },
 
     dossierNumberContainer: {
-        flex:1,
+        flex: 1,
         alignSelf: 'center',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        paddingTop: 5
     },
 
     dossierNumberInput: {
@@ -148,12 +144,12 @@ const styles = StyleSheet.create({
 
     pickersContainer: {
         paddingTop: 5,
-        flex:4,
+        flex: 4,
         flexDirection: "row",
     },
 
     containerPicker: {
-        flex:1,
+        flex: 1,
         flexDirection: "column",
         justifyContent: 'flex-start',
         alignItems: 'center',

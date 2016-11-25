@@ -5,6 +5,7 @@ import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} fro
 import SwipeCards from "react-native-swipe-cards";
 import Card from "./Card";
 import TestCompleteCard from "./TestCompleteCard";
+import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Cards from "../domain/Cards";
@@ -13,6 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class DenominationTest extends Component {
     constructor(props) {
+        debugger;
         super(props);
         // let {height, width} = Dimensions.get('window');
         this.state = {
@@ -66,7 +68,7 @@ export default class DenominationTest extends Component {
         return <Card {...nextCardToRender}/>;
     }
 
-    goToPreviousCard() {
+    goBack() {
         if (this.state.currentPosition > 1) {
 
             let previousPosition = this.state.currentPosition - 1;
@@ -98,6 +100,8 @@ export default class DenominationTest extends Component {
                 currentPosition: previousPosition,
                 hint: ''
             });
+        } else {
+            this.props.navigator.pop();
         }
     }
 
@@ -153,7 +157,14 @@ export default class DenominationTest extends Component {
         return (
             <View style={styles.container}>
 
-                <View style={styles.topBufferContainer}/>
+                <Nav
+                    type='backLogoHelp'
+                    backMethod={this.goBack.bind(this)}
+                    backText=''
+                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
+
+
                 <View style={styles.topContainer}>
                     <View style={{marginRight: 60}}>
                         <Button color={Colors.SEMANTIC}
@@ -224,7 +235,7 @@ export default class DenominationTest extends Component {
 //
 // <Button color={Colors.BLACK}
 // title="Previous"
-// onPress={this.goToPreviousCard.bind(this)}/>
+// onPress={this.goBack.bind(this)}/>
 
 const styles = StyleSheet.create({
     container: {
