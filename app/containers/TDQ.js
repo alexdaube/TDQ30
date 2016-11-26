@@ -9,6 +9,7 @@ import DenominationTest from "../components/DenominationTest";
 import TestCompleteCard from "../components/TestCompleteCard";
 import ScoreCard from "../components/ScoreCard";
 import Setting from "../components/Setting";
+import ResultEdit from "../components/ResultEdit";
 
 
 export default class TDQ extends Component {
@@ -85,6 +86,20 @@ export default class TDQ extends Component {
                     cards={route.cards}/>
             );
         }
+
+        else if (routeId == 'resultEdit') {
+            return (
+                <ResultEdit
+                    {...this.props}
+                    navigator={navigator}
+                    dateOfBirth={route.dateOfBirth}
+                    educationLevel={route.educationLevel}
+                    dossier={route.dossier}
+                    cards={route.cards}
+                    card={route.card}/>
+            );
+        }
+
         else {
             return (
                 <Main

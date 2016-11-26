@@ -42,7 +42,7 @@ export default class ScoreCard extends Component {
     }
 
     _getErrorBadges(card) {
-        let errorLabel = card.errorReported ? <Text>Erreur Notée: </Text> : <View/>;
+        let errorLabel = card.errorReported ? <Text>Erreur: </Text> : <View/>;
         return (
             <View style={styles.rowErrorBadges}>
                 {errorLabel}
@@ -72,13 +72,28 @@ export default class ScoreCard extends Component {
                     {this._getErrorBadges(card)}
 
                     <View style={styles.rowEdit}>
-                        <Icon name='edit' color={Colors.BLACK} size={18}/>
+                        <Icon.Button name='edit'
+                                     color={Colors.BLACK}
+                                     size={18}
+                                     backgroundColor="transparent"
+                                     onPress={this.resultEdit.bind(this, card)}/>
                     </View>
-
                 </View>
                 <Separator />
             </View>
         );
+    }
+
+    resultEdit(cardToEdit) {
+        this.props.navigator.push({
+            id: 'resultEdit',
+            name: "result edit",
+            card: cardToEdit,
+            cards: this.props.cards,
+            dateOfBirth: this.props.dateOfBirth,
+            educationLevel: this.props.educationLevel,
+            dossier: this.props.dossier
+        });
     }
 
     render() {
@@ -162,12 +177,12 @@ const styles = StyleSheet.create({
         marginLeft: 5
     },
     rowEdit: {
-        flex: 1,
+        flex: 2,
         alignItems: 'flex-end',
         marginRight: 5
     },
     rowErrorBadges: {
-        flex: 4,
+        flex: 3,
         flexDirection: 'row'
     },
 
