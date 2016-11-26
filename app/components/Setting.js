@@ -1,11 +1,59 @@
 'use strict';
 
 import React, {Component} from "react";
-import {StyleSheet, Image, Text, View} from "react-native";
+import {StyleSheet, Image, Text, View, Button, TextInput} from "react-native";
 import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 
+export default class Setting extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: ''
+        };
+    }
+
+    handleChange(newEmail) {
+        this.setState({
+            email: newEmail
+        });
+    }
+
+    closeSettings() {
+        this.props.navigator.pop();
+    }
+
+    saveSettings() {
+
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Nav
+                    type='modal'
+                    closeMethod={this.closeSettings.bind(this)}/>
+
+                <View style={styles.settingsContainer}>
+                    <TextInput
+                        style={styles.dossierNumberInput}
+                        value={this.state.email}
+                        autoCorrect={false}
+                        onChangeText={this.handleChange.bind(this)}
+                        placeholder="Votre email"/>
+                </View>
+
+
+                <View style={styles.buttonContainer}>
+                    <Button color={Colors.WHITE}
+                            title="Sauvegarder"
+                            onPress={this.saveSettings.bind(this)}/>
+                </View>
+            </View>
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -14,72 +62,30 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.LIGHT_GREY
     },
 
-    closeButtonContainer: {
-        flex: 0.5,
-        alignItems: 'flex-end'
+    settingsContainer: {
+        paddingTop: 20,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        paddingBottom: 20
     },
 
-    tutorialContainer: {
-        flex: 10,
-        flexDirection: 'column'
-    },
-
-    tutorialItemContainer: {},
-
-    tutorialLabel: {},
-
-    tutorialContent: {
-        paddingLeft: 30,
+    dossierNumberInput: {
+        height: 30,
+        width: 200,
+        paddingLeft: 10,
+        paddingRight: 10,
+        fontSize: 14,
+        color: Colors.BLACK,
+        backgroundColor: Colors.WHITE
     },
 
     buttonContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 4,
-        marginLeft: 40,
-        marginRight: 40,
-        backgroundColor: Colors.POWDER_BLUE,
+        marginLeft: 75,
+        marginRight: 75,
+        backgroundColor: Colors.GREEN,
         borderRadius: Shapes.SQUARE
-    },
-
-    iconTextContainer: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-    testFinishedText: {
-        fontSize: 24,
-        fontWeight: 'bold'
     }
 });
-
-export default class Setting extends Component {
-
-    closeTutorial() {
-        this.props.navigator.pop();
-    }
-
-    render() {
-        return (
-            <View style={styles.container}>
-                <Nav
-                    type='modal'
-                    closeMethod={this.closeTutorial.bind(this)}/>
-
-                <View style={styles.tutorialContainer}>
-                    <View style={styles.tutorialItemContainer}>
-                        <Text style={styles.tutorialLabel}>
-                            Passer à la prochaine image du test:
-                        </Text>
-                        <Text style={styles.tutorialContent}>
-                            Glisser l'image vers la droite pour une bonne réponse
-                        </Text>
-                        <Text style={styles.tutorialContent}>
-                            Glisser l'image vers la gauche pour une mauvaise réponse
-                        </Text>
-                    </View>
-                </View>
-            </View>
-        );
-    }
-}

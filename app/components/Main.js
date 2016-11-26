@@ -48,8 +48,8 @@ export default class Main extends Component {
     }
 
     goToSettings() {
-        this.props.navigator.replace({
-            id: 'setting',
+        this.props.navigator.push({
+            id: 'settings',
             name: 'settings'
         });
     }
@@ -87,7 +87,7 @@ export default class Main extends Component {
                     <Icon.Button
                         name="ios-cog"
                         backgroundColor={Colors.LIGHT_GREY}
-                        onPress={this.goToTestSetup.bind(this)}
+                        onPress={this.goToSettings.bind(this)}
                         borderRadius={Shapes.SQUARE}
                         color={Colors.BLACK}>
                         <Text>Paramètres</Text>
