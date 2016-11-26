@@ -33,6 +33,7 @@ export default class Setting extends Component {
             <View style={styles.container}>
                 <Nav
                     type='modal'
+                    modalTitle="Paramètres"
                     closeMethod={this.closeSettings.bind(this)}/>
 
                 <View style={styles.settingsContainer}>

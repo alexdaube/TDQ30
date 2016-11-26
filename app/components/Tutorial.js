@@ -14,17 +14,13 @@ export default class Tutorial extends Component {
         this.props.navigator.pop();
     }
 
-    // Éléments à ajouter au tutoriel
-    // Back arrow
-    // icon tutorial
-    //
-
     render() {
         let _scrollView: ScrollView;
         return (
             <View style={styles.container}>
                 <Nav
                     type='modal'
+                    modalTitle="Tutoriel"
                     closeMethod={this.closeTutorial.bind(this)}/>
 
                 <ScrollView
@@ -89,7 +85,6 @@ export default class Tutorial extends Component {
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {

@@ -3,36 +3,6 @@ import {StyleSheet, Image, Text, Button, View, TouchableOpacity} from "react-nat
 import Icon from "react-native-vector-icons/Ionicons";
 import Colors from "../constants/Colors";
 
-const styles = StyleSheet.create({
-    container: {
-        height: 60,
-        flexDirection: 'row',
-        paddingTop: 10,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        borderBottomWidth: 1,
-        borderColor: 'rgba(0,0,0,0.1)'
-    },
-
-    icon: {
-        paddingTop: 10
-    },
-
-    iconLeft: {
-        paddingLeft: 10
-    },
-
-    iconRight: {
-        paddingRight: 10
-    },
-
-    logo: {
-        width: 100,
-        height: 60
-    }
-});
-
 let logo = function (homeMethod) {
     return (
         <View>
@@ -44,7 +14,6 @@ let logo = function (homeMethod) {
         </View>
     );
 };
-
 
 let help = function (helpMethod) {
     return (
@@ -102,13 +71,15 @@ export default class Nav extends Component {
             <View style={styles.container}>
                 <View/>
                 <View style={{paddingTop: 10}}>
+                    <Text style={styles.logoText}>{this.props.modalTitle}</Text>
+                </View>
+                <View style={{paddingTop: 10}}>
                     <Icon.Button name="ios-close-circle"
                                  color={Colors.BLACK}
                                  backgroundColor="transparent"
                                  size={32}
                                  onPress={this.props.closeMethod}/>
                 </View>
-                <View/>
             </View>
         );
     }
@@ -127,4 +98,40 @@ export default class Nav extends Component {
         }
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: 60,
+        flexDirection: 'row',
+        paddingTop: 10,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        borderColor: 'rgba(0,0,0,0.1)'
+    },
+
+    icon: {
+        paddingTop: 10
+    },
+
+    iconLeft: {
+        paddingLeft: 10
+    },
+
+    iconRight: {
+        paddingRight: 10
+    },
+
+    logo: {
+        width: 100,
+        height: 60
+    },
+
+    logoText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: Colors.BLACK
+    }
+});
 
