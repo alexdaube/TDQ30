@@ -3,7 +3,7 @@
 import React, {Component} from "react";
 import {StyleSheet, Image, Text, View, Dimensions, Button} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import ScoreCard from "./ScoreCard";
+import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
 import Space from "./Space";
@@ -11,9 +11,7 @@ import Space from "./Space";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 30,
         flexDirection: 'column',
-        justifyContent: 'center',
         backgroundColor: Colors.LIGHT_GREY
     },
 
@@ -29,7 +27,8 @@ const styles = StyleSheet.create({
 
     iconTextContainer: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingTop: 30
     },
 
     testFinishedText: {
@@ -41,20 +40,22 @@ const styles = StyleSheet.create({
 export default class TestCompleteCard extends Component {
     goToResults() {
         this.props.navigator.push({
-            title: "Test Results",
-            component: ScoreCard,
-            passProps: {
-                cards: this.props.cards,
-                dateOfBirth: this.props.dateOfBirth,
-                educationLevel: this.props.educationLevel,
-                dossier: this.props.dossier
-            }
+            id: 'result',
+            name: "Test Results",
+            cards: this.props.cards,
+            dateOfBirth: this.props.dateOfBirth,
+            educationLevel: this.props.educationLevel,
+            dossier: this.props.dossier
         });
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <Nav
+                    type='logoHelp'
+                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
                 <View style={styles.iconTextContainer}>
                     <Text style={styles.testFinishedText}>
                         <Icon name="check-circle" color={Colors.GREEN} size={24}/> Test terminé

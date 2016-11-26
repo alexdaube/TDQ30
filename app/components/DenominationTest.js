@@ -4,7 +4,6 @@ import React, {Component} from "react";
 import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} from "react-native";
 import SwipeCards from "react-native-swipe-cards";
 import Card from "./Card";
-import TestCompleteCard from "./TestCompleteCard";
 import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
@@ -14,7 +13,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 export default class DenominationTest extends Component {
     constructor(props) {
-        debugger;
         super(props);
         // let {height, width} = Dimensions.get('window');
         this.state = {
@@ -107,14 +105,12 @@ export default class DenominationTest extends Component {
 
     goToEndOfTest() {
         this.props.navigator.push({
-            title: "Test Results",
-            component: TestCompleteCard,
-            passProps: {
-                cards: this.state.cards,
-                dateOfBirth: this.props.dateOfBirth,
-                educationLevel: this.props.educationLevel,
-                dossier: this.props.dossier
-            }
+            id: 'testCompleted',
+            name: "Test Results",
+            cards: this.state.cards,
+            dateOfBirth: this.props.dateOfBirth,
+            educationLevel: this.props.educationLevel,
+            dossier: this.props.dossier
         });
     }
 
@@ -163,7 +159,6 @@ export default class DenominationTest extends Component {
                     backText=''
                     helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
-
 
                 <View style={styles.topContainer}>
                     <View style={{marginRight: 60}}>
@@ -250,7 +245,7 @@ const styles = StyleSheet.create({
         flex: 0.5,
         flexDirection: 'row',
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     cardContainer: {
         flex: 5

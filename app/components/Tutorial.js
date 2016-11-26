@@ -7,14 +7,6 @@ import Shapes from "../constants/Shapes";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 
-const supportedOrientationsPickerValues = [
-    ['portrait'],
-    ['landscape'],
-    ['landscape-left'],
-    ['portrait', 'landscape-right'],
-    ['portrait', 'landscape'],
-    [],
-];
 
 const styles = StyleSheet.create({
     container: {

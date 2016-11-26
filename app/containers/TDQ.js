@@ -3,12 +3,12 @@
 import React, {Component} from "react";
 import {Navigator, View} from "react-native";
 import Main from "../components/Main";
-//import Settings from "../components/Settings";
 import Tutorial from "../components/Tutorial";
 import Setup from "../components/Setup";
 import DenominationTest from "../components/DenominationTest";
 import TestCompleteCard from "../components/TestCompleteCard";
 import ScoreCard from "../components/ScoreCard";
+//import Settings from "../components/Settings";
 
 
 export default class TDQ extends Component {
@@ -66,7 +66,11 @@ export default class TDQ extends Component {
             return (
                 <TestCompleteCard
                     {...this.props}
-                    navigator={navigator}/>
+                    navigator={navigator}
+                    dateOfBirth={route.dateOfBirth}
+                    educationLevel={route.educationLevel}
+                    dossier={route.dossier}
+                    cards={route.cards}/>
             );
         }
 
@@ -74,10 +78,14 @@ export default class TDQ extends Component {
             return (
                 <ScoreCard
                     {...this.props}
-                    navigator={navigator}/>
+                    navigator={navigator}
+                    dateOfBirth={route.dateOfBirth}
+                    educationLevel={route.educationLevel}
+                    dossier={route.dossier}
+                    cards={route.cards}/>
             );
         }
-         else {
+        else {
             return (
                 <Main
                     {...this.props}

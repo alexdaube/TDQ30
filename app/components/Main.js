@@ -33,13 +33,6 @@ const styles = StyleSheet.create({
 );
 
 export default class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showTutorial: false
-        };
-    }
-
     goToTestSetup() {
         this.props.navigator.push({
             id: "setup",
@@ -48,21 +41,17 @@ export default class Main extends Component {
     }
 
     openTutorial() {
-        this.setState({
-            showTutorial: true
+        this.props.navigator.replace({
+            id: 'tutorial',
+            name: 'tutorial'
         });
     }
-
-    closeTutorial() {
-        this.setState({
-            showTutorial: false
-        });
-    }
-
 
     goToSettings() {
-        this.props.navigator.replace(
-            {id: 'setting'})
+        this.props.navigator.replace({
+            id: 'setting',
+            name: 'settings'
+        });
     }
 
     render() {
@@ -70,11 +59,6 @@ export default class Main extends Component {
             <View style={styles.container}>
 
                 <Nav homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
-                <Tutorial
-                    tutorialVisibility={this.state.showTutorial}
-                    tutorialClose={this.closeTutorial.bind(this)}/>
-
-
 
                 <Space length={40}/>
 

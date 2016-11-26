@@ -93,6 +93,7 @@ export default class Nav extends Component {
         // Props: homeMethod, helpMethod
         return (
             <View style={styles.container}>
+                <View style={{paddingRight: 55}}/>
                 {logo(this.props.homeMethod)}
                 {help(this.props.helpMethod)}
             </View>
