@@ -66,7 +66,7 @@ export default class Setup extends Component {
                     type='backLogoHelp'
                     backMethod={() => this.props.navigator.pop()}
                     backText=''
-                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    helpMethod={() => this.props.navigator.push({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
 
 

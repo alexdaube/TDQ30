@@ -157,7 +157,7 @@ export default class DenominationTest extends Component {
                     type='backLogoHelp'
                     backMethod={this.goBack.bind(this)}
                     backText=''
-                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    helpMethod={() => this.props.navigator.push({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
 
                 <View style={styles.topContainer}>

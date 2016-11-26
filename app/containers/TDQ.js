@@ -8,7 +8,7 @@ import Setup from "../components/Setup";
 import DenominationTest from "../components/DenominationTest";
 import TestCompleteCard from "../components/TestCompleteCard";
 import ScoreCard from "../components/ScoreCard";
-//import Settings from "../components/Settings";
+import Setting from "../components/Setting";
 
 
 export default class TDQ extends Component {
@@ -28,13 +28,13 @@ export default class TDQ extends Component {
                     navigator={navigator}/>
             );
         }
-        // else if (routeId === 'settings') {
-        //     return (
-        //         <Messages
-        //             {...this.props}
-        //             navigator={navigator}/>
-        //     );
-        // }
+        else if (routeId === 'settings') {
+            return (
+                <Setting
+                    {...this.props}
+                    navigator={navigator}/>
+            );
+        }
         else if (routeId == 'tutorial') {
             return (
                 <Tutorial

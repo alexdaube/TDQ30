@@ -41,7 +41,7 @@ export default class Main extends Component {
     }
 
     openTutorial() {
-        this.props.navigator.replace({
+        this.props.navigator.push({
             id: 'tutorial',
             name: 'tutorial'
         });

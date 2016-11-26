@@ -86,7 +86,7 @@ export default class ScoreCard extends Component {
             <View style={styles.container}>
                 <Nav
                     type='logoHelp'
-                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    helpMethod={() => this.props.navigator.push({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
 
                 <ListView

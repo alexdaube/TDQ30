@@ -60,7 +60,6 @@ let help = function (helpMethod) {
 
 export default class Nav extends Component {
     backLogoHelp() {
-        // Props: homeMethod, backMethod, backText, helpMethod
         return (
             <View style={styles.container}>
                 <View style={[styles.icon, styles.iconLeft]}>
@@ -79,7 +78,6 @@ export default class Nav extends Component {
     }
 
     logo() {
-        // Props: homeMethod
         return (
             <View style={styles.container}>
                 <View/>
@@ -90,7 +88,6 @@ export default class Nav extends Component {
     }
 
     logoHelp() {
-        // Props: homeMethod, helpMethod
         return (
             <View style={styles.container}>
                 <View style={{paddingRight: 55}}/>
@@ -101,14 +98,17 @@ export default class Nav extends Component {
     }
 
     modal() {
-        // Props: closeMethod
         return (
             <View style={styles.container}>
-                <Icon.Button name="ion-close-circled"
-                             color={Colors.RED}
-                             backgroundColor="transparent"
-                             size={24}
-                             onPress={this.props.closeMethod}/>
+                <View/>
+                <View style={{paddingTop: 10}}>
+                    <Icon.Button name="ios-close-circle"
+                                 color={Colors.BLACK}
+                                 backgroundColor="transparent"
+                                 size={32}
+                                 onPress={this.props.closeMethod}/>
+                </View>
+                <View/>
             </View>
         );
     }

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 
 export default class TestCompleteCard extends Component {
     goToResults() {
-        this.props.navigator.push({
+        this.props.navigator.replace({
             id: 'result',
             name: "Test Results",
             cards: this.props.cards,
@@ -54,7 +54,7 @@ export default class TestCompleteCard extends Component {
             <View style={styles.container}>
                 <Nav
                     type='logoHelp'
-                    helpMethod={() => this.props.navigator.replace({id: 'tutorial'})}
+                    helpMethod={() => this.props.navigator.push({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
                 <View style={styles.iconTextContainer}>
                     <Text style={styles.testFinishedText}>

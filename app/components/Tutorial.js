@@ -1,32 +1,111 @@
 'use strict';
 
 import React, {Component} from "react";
-import {StyleSheet, Image, Text, View, Button, Modal} from "react-native";
+import {StyleSheet, Image, Text, View, ScrollView} from "react-native";
+import Nav from "./Nav";
 import Colors from "../constants/Colors";
 import Shapes from "../constants/Shapes";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Ionicons";
+import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 
+export default class Tutorial extends Component {
+
+    closeTutorial() {
+        this.props.navigator.pop();
+    }
+
+    // Éléments à ajouter au tutoriel
+    // Back arrow
+    // icon tutorial
+    //
+
+    render() {
+        let _scrollView: ScrollView;
+        return (
+            <View style={styles.container}>
+                <Nav
+                    type='modal'
+                    closeMethod={this.closeTutorial.bind(this)}/>
+
+                <ScrollView
+                    ref={(scrollView) => { _scrollView = scrollView; }}
+                    automaticallyAdjustContentInsets={true}
+                    alwaysBounceVertical={false}>
+
+
+                    <View style={styles.tutorialImageContainer}>
+                        <Image
+                            source={require('../assets/images/tdq30Tutorial.png')}
+                            style={{width: 250,height: 150, marginTop: 5, marginBottom: 5}}/>
+                    </View>
+
+                    <View style={styles.tutorialContainer}>
+
+                        <View style={styles.tutorialItemContainer}>
+                            <Text style={[styles.instructionText, {color: Colors.BLACK}]}>
+                                <AwesomeIcon name="check" size={24} color={Colors.GREEN}/>
+                                Glisser l'image vers la droite pour assigner une bonne réponse et passer à la prochaine image
+                            </Text>
+                            <Text style={[styles.instructionText, {color: Colors.BLACK}]}>
+                                <AwesomeIcon name="remove" size={24} color={Colors.RED}/>
+                                Glisser l'image vers la gauche pour assigner une mauvaise réponse et passer à la prochaine image
+                            </Text>
+
+
+                            <Text style={[styles.instructionText, {color: Colors.PALE_RED}]}>
+                                Clicker <Icon name="md-return-left" size={24} color={Colors.PALE_RED}/>
+                                pour revenir à l'image précédente
+                            </Text>
+
+                            <Text style={[styles.instructionText, {color: Colors.POWDER_BLUE}]}>
+                                Clicker <Icon name="ios-information-circle" size={24} color={Colors.POWDER_BLUE}/>
+                                pour voir ce tutoriel
+                            </Text>
+
+                            <Text style={[styles.instructionText, {color: Colors.SEMANTIC}]}>
+                                Clicker 1 pour ajouter une erreur sémantique
+                            </Text>
+
+                            <Text style={[styles.instructionText, {color: Colors.PHONOLOGICAL}]}>
+                                Clicker 2 pour ajouter une erreur phonologique
+                            </Text>
+
+                            <Text style={[styles.instructionText, {color: Colors.VISUAL}]}>
+                                Clicker 3 pour ajouter une erreur visuelle
+                            </Text>
+
+                            <Text style={[styles.instructionText, {color: Colors.BLACK}]}>
+                                Clicker <AwesomeIcon name="low-vision" size={24} color={Colors.BLACK}/>
+                                pour donner un indice
+                            </Text>
+
+                        </View>
+                    </View>
+
+
+                </ScrollView>
+
+            </View>
+        );
+    }
+}
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 30,
-        paddingLeft: 20,
-        paddingRight: 10,
         flexDirection: 'column',
-        justifyContent: 'center',
         backgroundColor: Colors.LIGHT_GREY
     },
 
-    closeButtonContainer: {
-        flex: 0.5,
-        alignItems: 'flex-end'
-    },
 
     tutorialContainer: {
-        flex: 10,
-        flexDirection: 'column'
+        paddingTop: 10,
+    },
+
+    tutorialImageContainer: {
+        backgroundColor: Colors.POWDER_BLUE,
+        alignItems: 'center'
     },
 
     tutorialItemContainer: {},
@@ -55,61 +134,23 @@ const styles = StyleSheet.create({
     testFinishedText: {
         fontSize: 24,
         fontWeight: 'bold'
-    }
+    },
+
+    instructionText: {
+        fontSize: 14,
+        color: Colors.PALE_RED
+    },
+
+    tutorialText: {
+        fontSize: 14,
+        color: Colors.POWDER_BLUE
+    },
+
+    scrollView: {
+        backgroundColor: '#6A85B1',
+        height: 300,
+    },
+    horizontalScrollView: {
+        height: 120,
+    },
 });
-
-export default class Tutorial extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            selectedSupportedOrientation: 0,
-            currentOrientation: 'unknown'
-        };
-    }
-
-    closeTheModal() {
-        this.props.tutorialClose();
-    }
-
-    orientationChange(event) {
-        this.setState({
-            currentOrientation: event.nativeEvent.orientation
-        });
-    }
-
-    render() {
-        return (
-            <Modal
-                animationType={"slide"}
-                transparent={false}
-                visible={this.props.tutorialVisibility}
-                supportedOrientations={supportedOrientationsPickerValues[this.state.selectedSupportedOrientation]}
-                onOrientationChange={this.orientationChange.bind(this)}>
-                <View style={styles.container}>
-                    <View style={styles.closeButtonContainer}>
-                        <Icon.Button name="times-circle"
-                                     color={Colors.RED}
-                                     backgroundColor="transparent"
-                                     size={24}
-                                     onPress={this.closeTheModal.bind(this)}/>
-
-                    </View>
-                    <View style={styles.tutorialContainer}>
-                        <View style={styles.tutorialItemContainer}>
-                            <Text style={styles.tutorialLabel}>
-                                Passer à la prochaine image du test:
-                            </Text>
-                            <Text style={styles.tutorialContent}>
-                                Glisser l'image vers la droite pour une bonne réponse
-                            </Text>
-                            <Text style={styles.tutorialContent}>
-                                Glisser l'image vers la gauche pour une mauvaise réponse
-                            </Text>
-                        </View>
-                    </View>
-                </View>
-
-            </Modal>
-        );
-    }
-}
