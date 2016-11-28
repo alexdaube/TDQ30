@@ -59,15 +59,15 @@ export default class Tutorial extends Component {
                             </Text>
 
                             <Text style={[styles.instructionText, {color: Colors.SEMANTIC}]}>
-                                Clicker 1 pour ajouter une erreur sémantique
+                                Clicker S pour ajouter une erreur sémantique
                             </Text>
 
                             <Text style={[styles.instructionText, {color: Colors.PHONOLOGICAL}]}>
-                                Clicker 2 pour ajouter une erreur phonologique
+                                Clicker P pour ajouter une erreur phonologique
                             </Text>
 
                             <Text style={[styles.instructionText, {color: Colors.VISUAL}]}>
-                                Clicker 3 pour ajouter une erreur visuelle
+                                Clicker V pour ajouter une erreur visuelle
                             </Text>
 
                             <Text style={[styles.instructionText, {color: Colors.BLACK}]}>

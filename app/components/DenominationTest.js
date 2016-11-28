@@ -163,17 +163,17 @@ export default class DenominationTest extends Component {
                 <View style={styles.topContainer}>
                     <View style={{marginRight: 60}}>
                         <Button color={Colors.SEMANTIC}
-                                title="1"
+                                title="S"
                                 onPress={this.addSemanticError.bind(this)}/>
                     </View>
                     <View style={{marginRight: 60}}>
                         <Button color={Colors.PHONOLOGICAL}
-                                title="2"
+                                title="P"
                                 onPress={this.addPhonologicalError.bind(this)}/>
                     </View>
 
                     <Button color={Colors.VISUAL}
-                            title="3"
+                            title="V"
                             onPress={this.addVisualError.bind(this)}/>
                 </View>
 
@@ -205,7 +205,7 @@ export default class DenominationTest extends Component {
                             onPress={this.getHintOne.bind(this)}
                             borderRadius={Shapes.SQUARE}
                             color={Colors.WHITE}>
-                            <Text style={{color: Colors.WHITE}}>Indice 1</Text>
+                            <Text style={{color: Colors.WHITE}}>Indice S</Text>
                         </Icon.Button>
                     </View>
 
@@ -215,7 +215,7 @@ export default class DenominationTest extends Component {
                         onPress={this.getHintTwo.bind(this)}
                         borderRadius={Shapes.SQUARE}
                         color={Colors.WHITE}>
-                        <Text style={{color: Colors.WHITE}}>Indice 2</Text>
+                        <Text style={{color: Colors.WHITE}}>Indice P</Text>
                     </Icon.Button>
 
                     <Button color={Colors.RED}
