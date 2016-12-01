@@ -221,6 +221,7 @@ export default class DenominationTest extends Component {
                     <Button color={Colors.RED}
                             title="End"
                             onPress={this.goToEndOfTest.bind(this)}/>
+
                 </View>
             </View>
         )
