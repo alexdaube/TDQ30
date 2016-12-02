@@ -49,7 +49,6 @@ export default class ScoreCard extends Component {
                 {this._getASingleErrorBadge(card.semantic, 'lightbulb-o', Colors.SEMANTIC)}
                 {this._getASingleErrorBadge(card.phonological, 'hard-of-hearing', Colors.PHONOLOGICAL)}
                 {this._getASingleErrorBadge(card.visual, 'eye', Colors.VISUAL)}
-
             </View>
         );
     }
@@ -63,7 +62,7 @@ export default class ScoreCard extends Component {
         let resultIcon = card.score > 0 ? ['check', Colors.GREEN] : ['remove', Colors.RED];
         let result = <Icon name={resultIcon[0]} color={resultIcon[1]} size={18}/>;
         return (
-            <View>
+            <View style={{flex: 1}}>
                 <View style={styles.rowContainer}>
                     <View style={styles.rowName}>
                         <Text>{result} {card.position.toString()}. {card.name} </Text>
@@ -83,7 +82,7 @@ export default class ScoreCard extends Component {
             </View>
         );
     }
-
+    
     resultEdit(cardToEdit) {
         this.props.navigator.push({
             id: 'resultEdit',
@@ -104,11 +103,13 @@ export default class ScoreCard extends Component {
                     helpMethod={() => this.props.navigator.push({id: 'tutorial'})}
                     homeMethod={() => this.props.navigator.replace({id: 'home'})}/>
 
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}/>
+                <View style={styles.listViewContainer}>
+                    <ListView
+                        style={{flex: 1}}
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow.bind(this)}/>
+                </View>
 
-                <Space length={10}/>
                 <View style={styles.patientInfoContainer}>
                     <Text style={styles.patientInfoText}><Text style={styles.patientInfoLabel}># patient:</Text> {this.props.dossier}</Text>
                     <Text style={styles.patientInfoText}><Text style={styles.patientInfoLabel}>Née:</Text> {this.props.dateOfBirth}</Text>
@@ -150,6 +151,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
+    },
+    listViewContainer: {
+        flex: 4,
+        marginBottom: 10
     },
     buttonText: {
         fontSize: 18,
@@ -194,18 +199,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#E3E3E3",
         alignItems: "center",
         flexDirection: "row",
-        height: 40
+        flex: 1
     },
     emailButtonContainer: {
         backgroundColor: Colors.POWDER_BLUE,
-        height: 40,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     resultSummaryContainer: {
-        height: 40,
-        flexDirection: "column"
+        flex: 1,
+        flexDirection: "column",
+        marginBottom: 5
     },
     resultContainer: {
         alignItems: 'flex-end',
@@ -231,7 +236,7 @@ const styles = StyleSheet.create({
     },
 
     patientInfoContainer: {
-        height: 20,
+        flex: 1,
         flexDirection: 'row',
         alignSelf: 'center'
     },
