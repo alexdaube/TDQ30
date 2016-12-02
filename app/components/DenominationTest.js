@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component} from "react";
-import {StyleSheet, Image, Text, TouchableOpacity, View, Dimensions, Button} from "react-native";
+import {StyleSheet, Text, View, Button} from "react-native";
 import SwipeCards from "react-native-swipe-cards";
 import Card from "./Card";
 import Nav from "./Nav";
@@ -14,16 +14,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export default class DenominationTest extends Component {
     constructor(props) {
         super(props);
-        // let {height, width} = Dimensions.get('window');
         this.state = {
             cards: Cards,
             currentPosition: 1,
             hint: "",
             outOfCards: false,
-            // layout:{
-            //     height:height,
-            //     width:width
-            // }
         };
     }
 
@@ -135,20 +130,6 @@ export default class DenominationTest extends Component {
         return this.state.cards.find((card) => card.position == this.state.currentPosition);
     }
 
-
-    _onLayout(event) {
-        this.setState({
-            layout: {
-                height: event.nativeEvent.layout.height,
-                width: event.nativeEvent.layout.width
-            }
-        });
-    }
-
-    getContainerPadding() {
-        return (this.state.layout.width > this.state.layout.height) ? {paddingTop: 35} : {paddingTop: 75};
-    }
-
     render() {
         return (
             <View style={styles.container}>
@@ -228,20 +209,13 @@ export default class DenominationTest extends Component {
     }
 }
 
-//
-// <Button color={Colors.BLACK}
-// title="Previous"
-// onPress={this.goBack.bind(this)}/>
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingBottom: 20,
         backgroundColor: Colors.LIGHT_GREY
     },
-    topBufferContainer: {
-        flex: 1
-    },
+
     topContainer: {
         flex: 0.5,
         flexDirection: 'row',
@@ -263,6 +237,5 @@ const styles = StyleSheet.create({
     hintText: {
         fontSize: 12,
         textAlign: 'center',
-
     }
 });
