@@ -82,7 +82,7 @@ export default class ScoreCard extends Component {
             </View>
         );
     }
-    
+
     resultEdit(cardToEdit) {
         this.props.navigator.push({
             id: 'resultEdit',
